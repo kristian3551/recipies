@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import ErrorBoundary from '../components/error-boundary';
-import AuthContext from '../AuthContext';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
+import ErrorBoundary from '../../components/error-boundary';
+import AuthContext from '../../AuthContext';
 import { useHistory } from 'react-router-dom';
+import styles from './index.module.css';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
@@ -37,7 +38,7 @@ const LoginPage = () => {
             <Header />
             <ErrorBoundary>
                 
-            <form id="login-form" className="text-center p-5 form-layout" action="#" method="POST">
+            <form id="login-form" className={`text-center p-5 ${styles['form-layout']}`} action="#" method="POST">
                 <p className="h4 mb-4">Sign in</p>
                 <input type="text" id="defaultRegisterFormUsername" name="username" className="form-control mb-4"
                     placeholder="Username" onChange={(e) => {

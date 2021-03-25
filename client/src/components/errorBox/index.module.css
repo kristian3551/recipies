@@ -1,0 +1,4 @@
+.successBox, .loadingBox, .errorBox {
+    display: none;
+    text-align: center;
+  }

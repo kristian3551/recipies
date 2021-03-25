@@ -1,9 +1,10 @@
 import React from 'react';
+import styles from './index.module.css';
 
 const Footer = () => {
-    return (<footer className="mastfoot mt-5 text-center text-light">
+    return (<footer className={`${styles.mastfoot} mt-5 text-center text-light`}>
     <div className="inner">
-        <p>Made with &hearts; by <a href="/">Recipes</a>.</p>
+        <p>Made with &hearts; by <a className={styles.footlink} href="/">Recipes</a>.</p>
     </div>
     <i className="fa fa-heart"></i>
 </footer>)

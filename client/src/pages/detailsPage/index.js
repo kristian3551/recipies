@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import AuthContext from '../AuthContext';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
+import AuthContext from '../../AuthContext';
 import { Link } from 'react-router-dom';
+import styles from './index.module.css';
 
 const DetailsPage = ({ match, history, location }) => {
     const [recipe, setRecipe] = useState({ ingredients: [], author: {}, description: 'default',
@@ -40,22 +41,22 @@ likes: [] });
     
     return (<>
         <Header />
-        <div className="row form-layout p-5">
+        <div className={`row ${styles['form-layout']} p-5`}>
             <div className="col-md-12">
-                <div className="recepieInfo">
-                    <div className="detailsFoodImage">
+                <div className={`${styles['recepieInfo']}`}>
+                    <div className={styles["detailsFoodImage"]}>
                         <img src={recipe.foodImageURL}
                             alt="" />
                     </div>
 
-                    <div className="infoPack">
+                    <div className={styles.infoPack}>
                         <h3 className="my-3">{recipe.meal}</h3>
-                        <p className="prep-method">{recipe.prepMethod}</p>
+                        <p className={styles['prep-method']}>{recipe.prepMethod}</p>
                         {recipe.description.split('/n').map((e,i) => {
-                            return <p className="description">{e}</p>
+                            return <p className={styles.description}>{e}</p>
                         })}
                     </div>
-                    <div className="actions">
+                    <div className={styles.actions}>
 
                         {isAuthor ? (<>
                             <Link className="btn btn-danger" style={{marginRight: '10px'}} onClick={archiveHandler}>Archive</Link>
@@ -68,8 +69,8 @@ likes: [] });
                     </div>
                 </div>
 
-                <div className="detailsIngredients">
-                    <h3 className="my-3 ingredient">Ingredients</h3>
+                <div className={styles['detailsIngredients']}>
+                    <h3 className={`my-3 ${styles.ingredient}`}>Ingredients</h3>
                     <ul>
                         {[...recipe.ingredients].map((e, i) => {
                             return <li key={i}>{e}</li>
