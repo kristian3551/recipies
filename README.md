@@ -1,6 +1,8 @@
 # recipies
 
-Recipies is my project for ReactJS course. The main concept is 
+Recipies is my project for ReactJS course. The main concept is: 
+- creating and sharing different cooking recipies
+- evaluating other people's recipies
 
 # Running the project
 
