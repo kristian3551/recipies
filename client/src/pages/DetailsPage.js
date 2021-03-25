@@ -26,6 +26,7 @@ likes: [] });
     }
 
     const likeHandler = async () => {
+        if([...recipe.likes].find(e => e._id == user._id)) return;
         const promise = await fetch(`http://localhost:8000/api/recipe/${id}/like`, {
             method: "POST",
             headers: {
@@ -36,7 +37,7 @@ likes: [] });
         window.location.reload();
         
     }
-
+    
     return (<>
         <Header />
         <div className="row form-layout p-5">
@@ -60,7 +61,7 @@ likes: [] });
                             <Link className="btn btn-danger" style={{marginRight: '10px'}} onClick={archiveHandler}>Archive</Link>
                             <Link className="btn btn-info" to={`/edit/${id}`}>Edit</Link></>)
                             : (<Link className="btn btn-success" onClick={likeHandler}>
-                                {[...recipe.likes].find(e => e == user._id) ? 
+                                {[...recipe.likes].find(e => e._id == user._id) ? 
                                 `You and ${recipe.likes.length - 1 > 0 ? recipe.likes.length - 1 : "0"} liked the recipe` : 
                                 (`Like recipe! ${recipe.likes.length} people have done it!`)}</Link>)}
 

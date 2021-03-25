@@ -1,15 +1,22 @@
 import React, { useState, useContext } from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import ErrorBoundary from '../components/error-boundary';
 import AuthContext from '../AuthContext';
+import { useHistory } from 'react-router-dom';
 
-const LoginPage = ({ history }) => {
+const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { login } = useContext(AuthContext);
+    const history = useHistory();
 
     const signInHandler = async (e) => {
         e.preventDefault();
+        if(username.length < 3) {
+            throw new Error('Username should be more than 3 symbols.');
+        }
+        
         const promise = await fetch('http://localhost:8000/api/user/login', {
             method: "POST",
             headers: {
@@ -28,6 +35,8 @@ const LoginPage = ({ history }) => {
     return (
         <>
             <Header />
+            <ErrorBoundary>
+                
             <form id="login-form" className="text-center p-5 form-layout" action="#" method="POST">
                 <p className="h4 mb-4">Sign in</p>
                 <input type="text" id="defaultRegisterFormUsername" name="username" className="form-control mb-4"
@@ -44,6 +53,8 @@ const LoginPage = ({ history }) => {
 
             </form>
             <Footer />
+            </ErrorBoundary>
+            
         </>
     );
 }
