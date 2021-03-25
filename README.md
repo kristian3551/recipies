@@ -1,4 +1,4 @@
-# recipies
+# RECIPIES
 
 Recipies is my project for ReactJS course. The main concept is: 
 - creating and sharing different cooking recipies
@@ -6,8 +6,5 @@ Recipies is my project for ReactJS course. The main concept is:
 
 # Running the project
 
-1. First open the client folder and type in the terminal: __npm install__
-2. To run the client-side application just type: __npm start__
-3. Open the server-side folder called *server* and type: __npm install__ as well as __npm run nodemon__ 
-
-# Functionality
+1. First, open the server-side folder called *server* and type: __npm install__ as well as __npm run nodemon__.
+2. Second, open the client folder and type in the terminal: __npm install__. Run ReactJS with __npm start__.
