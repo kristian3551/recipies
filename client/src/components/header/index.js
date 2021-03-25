@@ -13,7 +13,7 @@ const Header = () => {
 
     return (<header className="masthead mb-auto">    
     <div className="inner">
-        <h3 className="masthead-brand">CookUni</h3>
+        <h3 className="masthead-brand">Recipes</h3>
         <nav className="nav nav-masthead justify-content-center">
         {!loggedIn && (<Link className="nav-link" to="/">Home</Link>)}
             { loggedIn ? (<>
