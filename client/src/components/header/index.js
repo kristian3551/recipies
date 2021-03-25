@@ -11,17 +11,17 @@ const Header = () => {
         history.push('/');
     }
 
-    return (<header className="masthead mb-auto">    
+    return (<header className={`${styles.masthead} mb-auto`}>    
     <div className="inner">
-        <h3 className="masthead-brand">Recipes</h3>
-        <nav className="nav nav-masthead justify-content-center">
-        {!loggedIn && (<Link className="nav-link" to="/">Home</Link>)}
+        <h3 className={`${styles['masthead-brand']}`}>Recipes</h3>
+        <nav className={`nav ${styles['nav-masthead']} justify-content-center`}>
+        {!loggedIn && (<Link className={styles['nav-link']} to="/">Home</Link>)}
             { loggedIn ? (<>
-            <Link className="nav-link" to="/">Welcome, {user.firstName} {user.lastName}!</Link>
-            <Link className="nav-link" to="/create">Share recipe</Link>
-            <Link className="nav-link" onClick={logoutHandler}>Logout</Link></>) : (<>
-            <Link className="nav-link" to="/login">Login</Link>
-            <Link className="nav-link" to="/register">Register</Link>
+            <Link className={styles['nav-link']} to="/">Welcome, {user.firstName} {user.lastName}!</Link>
+            <Link className={styles['nav-link']} to="/create">Share recipe</Link>
+            <Link className={styles['nav-link']} onClick={logoutHandler}>Logout</Link></>) : (<>
+            <Link className={styles['nav-link']} to="/login">Login</Link>
+            <Link className={styles['nav-link']} to="/register">Register</Link>
             </>)}
             
             

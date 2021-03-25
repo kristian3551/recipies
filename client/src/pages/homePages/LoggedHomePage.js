@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import Recipe from '../components/recipeCard';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
+import Recipe from '../../components/recipeCard';
+import styles from './LoggedHomePage.module.css';
 
 const LoggedHomePage = () => {
     const [recipes, setRecipes] = useState([]);
@@ -18,7 +19,7 @@ const LoggedHomePage = () => {
         <h1 class="text-center">Our Recipes</h1>
 
         {[...recipes].length == 0 ? (
-            <div id='foodNotFound'>
+            <div className={styles['foodNotFound']}>
                 <img src="https://t4.ftcdn.net/jpg/00/62/17/31/240_F_62173114_ozantkVtkPgzL0fxssAkTqKX1FHPr0UW.jpg" />
                 <h3>Food not found...</h3>
             </div>

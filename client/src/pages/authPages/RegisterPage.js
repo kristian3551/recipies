@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import LoginPage from './LoginPage';
-import AuthContext from '../AuthContext';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
+import AuthContext from '../../AuthContext';
+import styles from './index.module.css';
 
 const RegisterPage = ({ history }) => {
     const [username, setUsername] = useState('');
@@ -23,6 +23,7 @@ const RegisterPage = ({ history }) => {
     const signUpHandler = async (e) => {
         e.preventDefault();
         console.log(firstName, lastName);
+        if(password != repeatPassword) return;
         const promise = await fetch('http://localhost:8000/api/user/register', {
             method: "POST", 
             headers: {
@@ -39,7 +40,7 @@ const RegisterPage = ({ history }) => {
     }
     return (<>
         <Header />
-        <form id="register-form" className="text-center p-5 form-layout">
+        <form id="register-form" className={`text-center p-5 ${styles['form-layout']}`}>
             <p className="h4 mb-4">Sign up</p>
 
             <div className="form-row mb-4">

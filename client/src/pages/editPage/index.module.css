@@ -1,0 +1,16 @@
+.form-layout {
+    background: rgba(255, 255, 255, .7);
+    border-radius: 4px;
+    margin-top: 50px;
+    color: #050202;
+  }
+  
+  .form-layout button {
+    background: #7D0000;
+    margin-top: 20px !important;
+  }
+
+  .textarea {
+    height: 100vh;
+    resize: none
+  }

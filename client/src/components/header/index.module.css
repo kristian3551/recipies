@@ -1,5 +1,7 @@
 .masthead {
     margin-bottom: 2rem;
+    margin-top: 3px;
+    padding-bottom: 2rem;
   }
   
   .masthead-brand {
@@ -15,7 +17,7 @@
   }
   
   .nav-masthead .nav-link:hover, .nav-masthead .nav-link:focus {
-    border-bottom-color: rgba(255, 255, 255, .25);
+    border-bottom-color: rgba(255, 255, 255, 0.25);
     color: rgba(255, 255, 255, .8);
   }
   

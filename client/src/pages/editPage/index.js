@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/header';
-import Footer from '../components/footer';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
 import { useHistory } from 'react-router-dom';
-import setCategoryImage from '../utils/setCategoryImage';
+import setCategoryImage from '../../utils/setCategoryImage';
+import styles from './index.module.css';
 
 const EditPage = ({ match }) => {
     const [recipe, setRecipe] = useState({ ingredients: []});
@@ -56,7 +57,7 @@ const EditPage = ({ match }) => {
         history.push('/');
     }
 
-    return (<><Header/><form id="edit-form" className="text-center p-5 form-layout" action="#" method="POST" id="edit-receipt-form">
+    return (<><Header/><form id="edit-form" className={`text-center p-5 ${styles['form-layout']}`} action="#" method="POST" id="edit-receipt-form">
     <p className="h4 mb-4">Edit Recipe</p>
 
     <input type="text" id="defaultRecepieEditMeal" name="meal" className="form-control mb-4" placeholder="Meal"
@@ -66,10 +67,10 @@ const EditPage = ({ match }) => {
         placeholder="Ingredients" defaultValue={[...recipe.ingredients].join(', ')}
         onChange={(e) => formsHandler(e, 'ingredients')}/>
 
-    <textarea type="text" id="defaultRecepieEditMethodOfPreparation" name="prepMethod" className="form-control mb-4"
+    <textarea type="text" id="defaultRecepieEditMethodOfPreparation" name="prepMethod" className={`form-control mb-4 ${styles['textarea']}`}
          onChange={(e) => formsHandler(e, 'prepMethod')} defaultValue={recipe.prepMethod}></textarea>
 
-    <textarea type="text" id="defaultRecepieEditDescription" name="description" className="form-control mb-4"
+    <textarea type="text" id="defaultRecepieEditDescription" name="description" className={`form-control mb-4 ${styles['textarea']}`}
         placeholder="Description" defaultValue={recipe.description} onChange={(e) => formsHandler(e, 'description')}></textarea>
 
     <input type="text" id="defaultRecepieEditFoodImageURL" name="foodImageURL" className="form-control mb-4"

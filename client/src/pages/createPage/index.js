@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react';
-import Header from '../components/header';
-import Footer from '../components/footer';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
 import { useHistory } from 'react-router-dom';
-import AuthContext from '../AuthContext';
-import setCategoryImage from '../utils/setCategoryImage';
+import AuthContext from '../../AuthContext';
+import setCategoryImage from '../../utils/setCategoryImage';
+import styles from './index.module.css';
+
 const CreatePage = () => {
     const [meal, setMeal] = useState('');
     const [ingredients, setIngredients] = useState('');
@@ -54,7 +56,7 @@ const CreatePage = () => {
 
     return (<>
         <Header />
-        <form id="create-form" className="text-center p-5 form-layout" action="#" method="POST" id="share-receipt-form">
+        <form id="create-form" className={`text-center p-5 ${styles['form-layout']} ${styles['share-receipt-form']}`} action="#" method="POST">
             <p className="h4 mb-4">Share Recipe</p>
 
             <input type="text" id="defaultRecepieShareMeal" name="meal" className="form-control mb-4" placeholder="Meal"
@@ -64,10 +66,10 @@ const CreatePage = () => {
                 placeholder="Ingredients (separated by ', ')" onChange={(e) => formsHandler(e, 'ingredients')} />
 
             <textarea type="text" id="defaultRecepieShareMethodOfPreparation" name="prepMethod"
-                className="form-control mb-4" placeholder="Method of preparation"
+                className={`form-control mb-4 ${styles.textarea}`} placeholder="Method of preparation"
                 onChange={(e) => formsHandler(e, 'prepMethod')}></textarea>
 
-            <textarea type="text" id="defaultRecepieShareDescription" name="description" className="form-control mb-4"
+            <textarea type="text" id="defaultRecepieShareDescription" name="description" className={`form-control mb-4 ${styles.textarea}`}
                 placeholder="Description" onChange={(e) => formsHandler(e, 'description')}></textarea>
 
             <input type="text" id="defaultRecepieShareFoodImageURL" name="foodImageURL" className="form-control mb-4"

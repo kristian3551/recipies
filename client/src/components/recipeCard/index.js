@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import styles from './index.module.css';
 
 const Recipe = ({ id, recipe }) => {
     
@@ -7,17 +8,17 @@ const Recipe = ({ id, recipe }) => {
     <div className="container">
     <div className="row">
         <div className="col-lg-12">
-            <div className="our-team-main">
+            <div className={styles['our-team-main']}>
 
-                <div className="team-front">
+                <div className={styles['team-front']}>
                     <img
                         src={recipe.categoryImageURL} />
                     <h3>{recipe.meal}</h3>
                     <p>{recipe.category}</p>
                 </div>
 
-                <div className="team-back">
-                    <div className="back-side-info">
+                <div className={styles['team-back']}>
+                    <div className={styles['back-side-info']}>
                     <h4>Details</h4>
                     <Link to={`/details/${id}`}>View the recipe</Link>
                         <h4>Ingredients</h4>
@@ -29,7 +30,7 @@ const Recipe = ({ id, recipe }) => {
                         
                     </div>
 
-                    <img className="foodImage"
+                    <img className={styles['foodImage']}
                         src={recipe.foodImageURL} />
                 </div>
 

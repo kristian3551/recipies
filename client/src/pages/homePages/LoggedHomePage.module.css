@@ -1,0 +1,10 @@
+.foodNotFound {
+    margin: 0 auto;
+    text-align: center;
+    font-style: italic;
+  }
+  
+  .foodNotFound img {
+    height: auto;
+    border-radius: 15px;
+  }
