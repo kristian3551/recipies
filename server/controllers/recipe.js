@@ -11,10 +11,10 @@ module.exports = {
     getOne: (req, res, next) => {
         const id = req.params.id;
         models.Recipe.findOne({ _id: id}).populate('author').populate('likes')
+        .populate('comments')
         .then((recipeObject) => res.send(recipeObject))
         .catch(next);
     },
-
     post: {
         create: (req, res, next) => {
             const { meal, ingredients, prepMethod, description, foodImageURL, category, categoryImageURL, author } = req.body;
@@ -37,6 +37,21 @@ module.exports = {
             models.Recipe.updateOne({ _id: id }, { $push: { likes: user._id } })
                 .then((updatedRecipe) => res.send(updatedRecipe))
                 .catch(next);
+        },
+        comment: (req, res, next) => {
+            const id = req.params.id;
+            const { content, author } = req.body;
+            models.Comment.create({ content, author })
+            .then((createdComment) => {
+                return Promise.all([
+                    models.Recipe.updateOne({ _id: id }, { $push: { comments: createdComment._id } }),
+                        models.Comment.findOne({ _id: createdComment._id })
+                ])
+            })
+            .then(([modifiedRecipe, createdComment]) => {
+                res.send(createdComment);
+            })
+            .catch(next);
         }
     },
 
