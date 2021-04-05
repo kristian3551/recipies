@@ -4,10 +4,12 @@ import Footer from '../../components/footer';
 import AuthContext from '../../AuthContext';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
+import CommentSection from '../../components/comment-section';
 
 const DetailsPage = ({ match, history, location }) => {
-    const [recipe, setRecipe] = useState({ ingredients: [], author: {}, description: 'default',
-likes: [] });
+    const [recipe, setRecipe] = useState({ ingredients: [],
+         author: {}, description: 'default',
+likes: [], comments: [] });
     const { user } = useContext(AuthContext);
     const id = match.params.id;
 
@@ -38,7 +40,7 @@ likes: [] });
         window.location.reload();
         
     }
-    
+    console.log(recipe);
     return (<>
         <Header />
         <div className={`row ${styles['form-layout']} p-5`}>
@@ -65,8 +67,11 @@ likes: [] });
                                 {[...recipe.likes].find(e => e._id == user._id) ? 
                                 `You and ${recipe.likes.length - 1 > 0 ? recipe.likes.length - 1 : "0"} liked the recipe` : 
                                 (`Like recipe! ${recipe.likes.length} people have done it!`)}</Link>)}
-
+                    <hr/>
+                    <h3 style={{margin: '20px'}}>Comment section</h3>
+                    <CommentSection comments={recipe.comments} id={recipe._id}/>
                     </div>
+                    
                 </div>
 
                 <div className={styles['detailsIngredients']}>
