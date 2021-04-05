@@ -6,7 +6,6 @@ const Footer = () => {
     <div className="inner">
         <p>Made with &hearts; by <a className={styles.footlink} href="/">Recipes</a>.</p>
     </div>
-    <i className="fa fa-heart"></i>
 </footer>)
 }
 
