@@ -7,8 +7,8 @@ const Comment = ({ comment }) => {
     const hours = date.getHours();
     const minutes = date.getMinutes();
     const days = date.getDate();
-    const month = date.getMonth();
-    const year = date.getYear();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
 
     return (<div className={styles["new_comment"]}>
     <ul className={styles["user_comment"]}>
