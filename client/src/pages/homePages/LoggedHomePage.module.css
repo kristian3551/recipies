@@ -8,3 +8,8 @@
     height: auto;
     border-radius: 15px;
   }
+
+.filter-button {
+    margin-bottom: 5%;
+    padding-right: 20px;
+}
