@@ -13,7 +13,6 @@ const CommentSection = ({ comments, id }) => {
             return <Comment key={i} comment={e}/>
         })
     }
-    
     const handleChange = (e) => {
         setContent(e.target.value);
     }
@@ -30,7 +29,6 @@ const CommentSection = ({ comments, id }) => {
                 content, author: user.username
             })
         });
-        console.log(promise);
         window.location.reload(false);
     }
     return (<div className="comment_block">
