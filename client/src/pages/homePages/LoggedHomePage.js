@@ -9,49 +9,44 @@ const LoggedHomePage = () => {
     const [recipes, setRecipes] = useState([]);
     const [filterCriteria, setFilterCriteria] = useState('');
     const [filterContent, setFilterContent] = useState('');
-    const [filteredRecipes, setFilteredRecipes] = useState([]);
 
     useEffect(async () => {
         const promise = await fetch('http://localhost:8000/api/recipe');
         const recipesObject = await promise.json();
-        console.log(recipesObject);
-        setRecipes(recipesObject);
+        setRecipes(recipesObject.map(e => ({...e, show: 'true'})));
     }, []);
 
     const sortHandler = (e, type) => {
-        let sortedRecipes = [];
-        sortedRecipes = recipes.sort((a, b) => {
+        setRecipes(recipes.sort((a, b) => {
             if (type === 'alphabetical') return a.meal.localeCompare(b.meal);
             else if (type === 'likes') return b.likes.length - a.likes.length;
             else if (type === 'comments') return b.comments.length - a.comments.length;
             else if (type === 'ingredients') return b.ingredients.length - a.ingredients.length;
-        });
-        setRecipes(sortedRecipes);
+        }));
     }
 
     const filterCriteriaHandler = (e, type) => {
+        if(type === 'nothing') {
+            setRecipes(recipes.map(e => ({...e, show: true})));
+        }
         setFilterCriteria(type);
     }
 
     const filterHandler = (e) => {
-        let newFilteredRecipes = [];
+
         if(!filterCriteria) return;
-        if(filterCriteria === 'nothing') {
-            setFilteredRecipes([]);
-            return;
-        }
+
         else if(filterCriteria === 'ingredients') {
             const ingredients = filterContent.split(', ');
-            newFilteredRecipes = recipes.filter(e => {
+            setRecipes(recipes.filter(e => {
                 return ingredients.every(e1 => [...e.ingredients].includes(e1));
-            });
-            setFilteredRecipes(newFilteredRecipes);
+            }).map(e => ({...e, show: true})));
             return;
         }
-        newFilteredRecipes = recipes.filter(e => e[filterCriteria].includes(filterContent));
-        setFilteredRecipes(newFilteredRecipes);
-    }
 
+        setRecipes(recipes.map(e => ({...e, show: e[filterCriteria].includes(filterContent)})));
+    }
+    
     return (<>
         <Header />
         <h1 class="text-center">Our Recipes</h1>
@@ -100,9 +95,7 @@ const LoggedHomePage = () => {
             </div>
         ) : (
             <div id="sharedRecipes">
-                {filteredRecipes.length ? [...filteredRecipes].map((e, i) => {
-                    return <Recipe key={i} id={e._id} recipe={e} />
-                }) : [...recipes].map((e, i) => {
+                {[...recipes].filter(e => e.show).map((e, i) => {
                     return <Recipe key={i} id={e._id} recipe={e} />
                 })}
             </div>
