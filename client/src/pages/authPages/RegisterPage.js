@@ -58,6 +58,7 @@ const RegisterPage = ({ history }) => {
                 placeholder="Username" onChange={(e) => formsHandler(e, 'username')}/>
             <input type="password" className="form-control" name="password"
                 placeholder="Password" onChange={(e) => formsHandler(e, 'password')}/>
+                
             <hr />
             <input type="password" className="form-control" name="repeatPassword"
                 placeholder="Repeat Password" onChange={(e) => formsHandler(e, 'repeatPassword')}/>

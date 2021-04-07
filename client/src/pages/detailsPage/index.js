@@ -65,7 +65,7 @@ likes: [], comments: [] });
                             <Link className="btn btn-info" to={`/edit/${id}`}>Edit</Link></>)
                             : (<Link className="btn btn-success" onClick={likeHandler}>
                                 {[...recipe.likes].find(e => e._id == user._id) ? 
-                                `You and ${recipe.likes.length - 1 > 0 ? recipe.likes.length - 1 : "0"} liked the recipe` : 
+                                `You ${[...recipe.likes].length == 1 ? '' : `and ${recipe.likes.length - 1}`} liked the recipe` : 
                                 (`Like recipe! ${recipe.likes.length} people have done it!`)}</Link>)}
                     <hr/>
                     <h3 style={{margin: '20px'}}>Comment section</h3>
