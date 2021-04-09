@@ -15,11 +15,11 @@ const RegisterPage = ({ history }) => {
     const { login } = useContext(AuthContext);
 
     const formsHandler = (e, type) => {
-        if (type == 'firstName') setFirstName(e.target.value);
-        else if (type == 'lastName') setLastName(e.target.value);
-        else if (type == 'username') setUsername(e.target.value);
-        else if (type == 'password') setPassword(e.target.value);
-        else if (type == 'repeatPassword') setRepeatPassword(e.target.value);
+        if (type === 'firstName') setFirstName(e.target.value);
+        else if (type === 'lastName') setLastName(e.target.value);
+        else if (type === 'username') setUsername(e.target.value);
+        else if (type === 'password') setPassword(e.target.value);
+        else if (type === 'repeatPassword') setRepeatPassword(e.target.value);
     }
 
     const toggleError = (errorInfo) => {
@@ -36,6 +36,8 @@ const RegisterPage = ({ history }) => {
         else if (username.length < 8) 
         return toggleError('Username should be more than 8 symbols.');
         else if (password.length < 8) return toggleError('Password should be more than 8 symbols.');
+        else if(password !== repeatPassword) 
+            return toggleError('Both passwords should match!');
         const promise = await fetch('http://localhost:8000/api/user/register', {
             method: "POST",
             headers: {

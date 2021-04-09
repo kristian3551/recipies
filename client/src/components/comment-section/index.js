@@ -1,8 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './index.module.css';
 import Comment from '../comment';
 import AuthContext from '../../AuthContext';
-import { useHistory } from 'react-router-dom';
 
 const CommentSection = ({ comments, id }) => {
     const [content, setContent] = useState('');
@@ -20,7 +19,7 @@ const CommentSection = ({ comments, id }) => {
 
     const submitCommentHandler = async () => {
         if(content.length < 8) return;
-        const promise = await fetch(`http://localhost:8000/api/recipe/${id}/comments`, {
+        await fetch(`http://localhost:8000/api/recipe/${id}/comments`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +31,7 @@ const CommentSection = ({ comments, id }) => {
         window.location.reload(false);
     }
 
-    console.log(comments);
+    // console.log(comments);
 
     return (<div className={styles["comment_block"]}>
         

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
 
@@ -12,7 +12,7 @@ const Recipe = ({ id, recipe }) => {
 
                 <div className={styles['team-front']}>
                     <img
-                        src={recipe.categoryImageURL} />
+                        src={recipe.categoryImageURL} alt="Category"/>
                     <h3>{recipe.meal}</h3>
                     <p>{recipe.category}</p>
                 </div>
@@ -31,7 +31,7 @@ const Recipe = ({ id, recipe }) => {
                     </div>
 
                     <img className={styles['foodImage']}
-                        src={recipe.foodImageURL} />
+                        src={recipe.foodImageURL} alt="Food"/>
                 </div>
 
             </div>

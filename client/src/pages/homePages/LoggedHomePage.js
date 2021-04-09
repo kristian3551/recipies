@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import Recipe from '../../components/recipeCard';
@@ -10,10 +10,13 @@ const LoggedHomePage = () => {
     const [filterCriteria, setFilterCriteria] = useState('');
     const [filterContent, setFilterContent] = useState('');
 
-    useEffect(async () => {
-        const promise = await fetch('http://localhost:8000/api/recipe');
-        const recipesObject = await promise.json();
-        setRecipes(recipesObject.map(e => ({...e, show: 'true'})));
+    useEffect(() => {
+        const fetchData = async () => {
+            const promise = await fetch('http://localhost:8000/api/recipe');
+            const recipesObject = await promise.json();
+            setRecipes(recipesObject.map(e => ({ ...e, show: 'true' })));
+        };
+        fetchData();
     }, []);
 
     const sortHandler = (e, type) => {
@@ -21,32 +24,34 @@ const LoggedHomePage = () => {
             if (type === 'alphabetical') return a.meal.localeCompare(b.meal);
             else if (type === 'likes') return b.likes.length - a.likes.length;
             else if (type === 'comments') return b.comments.length - a.comments.length;
-            else if (type === 'ingredients') return b.ingredients.length - a.ingredients.length;
+            else return b.ingredients.length - a.ingredients.length;
         }));
     }
 
     const filterCriteriaHandler = (e, type) => {
-        if(type === 'nothing') {
-            setRecipes(recipes.map(e => ({...e, show: true})));
+        if (type === 'nothing') {
+            setRecipes(recipes.map(e => ({ ...e, show: true })));
         }
         setFilterCriteria(type);
     }
 
     const filterHandler = (e) => {
 
-        if(!filterCriteria) return;
+        if (!filterCriteria) return;
 
-        else if(filterCriteria === 'ingredients') {
+        else if (filterCriteria === 'ingredients') {
             const ingredients = filterContent.split(', ');
-            setRecipes(recipes.filter(e => {
-                return ingredients.every(e1 => [...e.ingredients].includes(e1));
-            }).map(e => ({...e, show: true})));
+            setRecipes(recipes.map(e => {
+                if(ingredients.every(e1 => [...e.ingredients].includes(e1)))
+                    return {...e, show: true};
+                else return {...e, show: false};
+            }));
             return;
         }
 
-        setRecipes(recipes.map(e => ({...e, show: e[filterCriteria].includes(filterContent)})));
+        setRecipes(recipes.map(e => ({ ...e, show: e[filterCriteria].includes(filterContent) })));
     }
-    
+
     return (<>
         <Header />
         <h1 class="text-center">Our Recipes</h1>
@@ -70,7 +75,7 @@ const LoggedHomePage = () => {
                         {filterCriteria ? `Filter by: ${filterCriteria}` : "Filter by:"}
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <Link class="dropdown-item" onClick={e => filterCriteriaHandler(e, 'nothing')}>Nothing</Link>
+                        <Link class="dropdown-item" onClick={e => filterCriteriaHandler(e, 'nothing')}>Nothing</Link>
                         <Link class="dropdown-item" onClick={e => filterCriteriaHandler(e, 'meal')}>Meal</Link>
                         <Link class="dropdown-item" onClick={e => filterCriteriaHandler(e, 'ingredients')}>Ingredients</Link>
                         <Link class="dropdown-item" onClick={e => filterCriteriaHandler(e, 'description')}>Description</Link>
@@ -79,18 +84,18 @@ const LoggedHomePage = () => {
                 </div>
             </div>
             <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1"
-            onChange={e => {
-                setFilterContent(e.target.value);
-            }} />
-            <button type="button" class="btn btn-light" style={{marginLeft: '30px'}} 
-            onClick={e => filterHandler(e)}>Filter</button>
+                onChange={e => {
+                    setFilterContent(e.target.value);
+                }} />
+            <button type="button" class="btn btn-light" style={{ marginLeft: '30px' }}
+                onClick={e => filterHandler(e)}>Filter</button>
         </div>
 
 
 
-        {[...recipes].length == 0 ? (
+        {[...recipes].filter(e => e.show).length === 0 ? (
             <div className={styles['foodNotFound']}>
-                <img src="https://t4.ftcdn.net/jpg/00/62/17/31/240_F_62173114_ozantkVtkPgzL0fxssAkTqKX1FHPr0UW.jpg" />
+                <img src="https://t4.ftcdn.net/jpg/00/62/17/31/240_F_62173114_ozantkVtkPgzL0fxssAkTqKX1FHPr0UW.jpg" alt="FoodNotFound"/>
                 <h3>Food not found...</h3>
             </div>
         ) : (
