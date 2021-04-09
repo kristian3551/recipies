@@ -55,13 +55,14 @@ likes: [], comments: [] });
                         <h3 className="my-3">{recipe.meal}</h3>
                         <p className={styles['prep-method']}>{recipe.prepMethod}</p>
                         {recipe.description.split('/n').map((e,i) => {
-                            return <p className={styles.description}>{e}</p>
+                            return <p key={i} className={styles.description}>{e}</p>
                         })}
                     </div>
+                    <i>* It is your article, so you can modify the recipe.</i>
                     <div className={styles.actions}>
 
                         {isAuthor ? (<>
-                            <Link className="btn btn-danger" style={{marginRight: '10px'}} onClick={archiveHandler}>Archive</Link>
+                            <Link className="btn btn-danger" style={{marginRight: '10px'}} onClick={archiveHandler}>Delete</Link>
                             <Link className="btn btn-info" to={`/edit/${id}`}>Edit</Link></>)
                             : (<Link className="btn btn-success" onClick={likeHandler}>
                                 {[...recipe.likes].find(e => e._id == user._id) ? 

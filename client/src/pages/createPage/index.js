@@ -4,6 +4,7 @@ import Footer from '../../components/footer';
 import { useHistory } from 'react-router-dom';
 import AuthContext from '../../AuthContext';
 import setCategoryImage from '../../utils/setCategoryImage';
+import ErrorBox from '../../components/errorBox';
 import styles from './index.module.css';
 
 const CreatePage = () => {
@@ -13,8 +14,16 @@ const CreatePage = () => {
     const [description, setDescription] = useState('');
     const [foodImageURL, setFoodImageURL] = useState('');
     const [category, setCategory] = useState('');
+    const [error, setError] = useState({ show: false, errorInfo: ''});
     const history = useHistory();
     const { user } = useContext(AuthContext);
+
+    const toggleError = (errorInfo) => {
+        setError({ show: true, errorInfo });
+        setTimeout(() => {
+            setError({ show: false, errorInfo: '' })
+        }, 5000);
+    }
 
     const formsHandler = (e, type) => {
         const value = e.target.value;
@@ -26,18 +35,31 @@ const CreatePage = () => {
         else if (type == 'category') setCategory(value);
     }
 
-    const getCookieValue = (name) => {
-        let arr = document.cookie.split('; ');
-        arr = arr.map(e => e.split('='));
-        return arr.find(e => e[0] == name)[1];
+    const validate = ( strings, URLs) => {
+        for( const e in strings) {
+            if(strings[e].length == 0) {
+                toggleError(`${e} should be a non-empty string!`);
+                return true;
+            }
+        }
+        for( const e in URLs) {
+            if(URLs[e].length === 0 || URLs[e].indexOf('http://')
+            || URLs[e].indexOf('https://')) {
+                toggleError(`${e} should be a valid URL starting with http:// or https://!`);
+                return true;
+            }
+        }
     }
 
     const shareHandler = async (e) => {
         e.preventDefault();
-        console.log(meal, ingredients, prepMethod, description, foodImageURL, category);
+        // console.log(meal, ingredients, prepMethod, description, foodImageURL, category);
         const ingredientsArray = ingredients.split(', ');
         const categoryImageURL = setCategoryImage(category);
-        
+
+        if(validate({ meal, ingredients, prepMethod, description, category},
+            { foodImageURL, categoryImageURL})) return;
+
         const promise = await fetch('http://localhost:8000/api/recipe', {
             method: "POST",
             headers: {
@@ -49,13 +71,14 @@ const CreatePage = () => {
             })
         });
         const data = await promise.json();
-        console.log(data);
+        // console.log(data);
         history.push('/');
     };
     
 
     return (<>
         <Header />
+        <ErrorBox show={error.show} errorInfo={error.errorInfo}/>
         <form id="create-form" className={`text-center p-5 ${styles['form-layout']} ${styles['share-receipt-form']}`} action="#" method="POST">
             <p className="h4 mb-4">Share Recipe</p>
 

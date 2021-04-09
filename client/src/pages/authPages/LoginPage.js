@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
-import ErrorBoundary from '../../components/error-boundary';
+import ErrorBox from '../../components/errorBox';
 import AuthContext from '../../AuthContext';
 import { useHistory } from 'react-router-dom';
 import styles from './index.module.css';
@@ -9,15 +9,20 @@ import styles from './index.module.css';
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState({ show: false, errorInfo: ''});
     const { login } = useContext(AuthContext);
     const history = useHistory();
 
+    const toggleError = (errorInfo) => {
+        setError({ show: true, errorInfo });
+        setTimeout(() => {
+            setError({ show: false, errorInfo: '' })
+        }, 5000);
+    }
+
     const signInHandler = async (e) => {
         e.preventDefault();
-        if(username.length < 3) {
-            throw new Error('Username should be more than 3 symbols.');
-        }
-        
+
         const promise = await fetch('http://localhost:8000/api/user/login', {
             method: "POST",
             headers: {
@@ -27,6 +32,7 @@ const LoginPage = () => {
                 username, password
             })
         });
+        if(!promise.ok) return toggleError('Invalid username or password!');
         const user = await promise.json();
         const token = promise.headers.get('Authorization');
         login(user, token);
@@ -36,7 +42,8 @@ const LoginPage = () => {
     return (
         <>
             <Header />
-            <ErrorBoundary>
+            
+            <ErrorBox show={error.show} errorInfo={error.errorInfo}/>
                 
             <form id="login-form" className={`text-center p-5 ${styles['form-layout']}`} action="#" method="POST">
                 <p className="h4 mb-4">Sign in</p>
@@ -54,7 +61,7 @@ const LoginPage = () => {
 
             </form>
             <Footer />
-            </ErrorBoundary>
+           
             
         </>
     );
