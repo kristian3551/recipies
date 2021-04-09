@@ -18,26 +18,29 @@ const EditPage = ({ match }) => {
     const history = useHistory();
     const id = match.params.id;
 
-    useEffect(async () => {
-        const promise = await fetch(`http://localhost:8000/api/recipe/${id}`);
-        const data = await promise.json();
-        setRecipe(data);
-        setMeal(data.meal);
-        setIngredients(data.ingredients.join(', '));
-        setPrepMethod(data.prepMethod);
-        setDescription(data.description);
-        setFoodImageURL(data.foodImageURL);
-        setCategory(data.category);
+    useEffect(() => {
+        const fetchData = async () => {
+            const promise = await fetch(`http://localhost:8000/api/recipe/${id}`);
+            const data = await promise.json();
+            setRecipe(data);
+            setMeal(data.meal);
+            setIngredients(data.ingredients.join(', '));
+            setPrepMethod(data.prepMethod);
+            setDescription(data.description);
+            setFoodImageURL(data.foodImageURL);
+            setCategory(data.category);
+        };
+        fetchData();
     }, []);
 
     const formsHandler = (e, type) => {
         const value = e.target.value;
-        if (type == 'meal') setMeal(value);
-        else if (type == 'ingredients') setIngredients(value);
-        else if (type == 'prepMethod') setPrepMethod(value);
-        else if (type == 'description') setDescription(value);
-        else if (type == 'foodImageURL') setFoodImageURL(value);
-        else if (type == 'category') setCategory(value);
+        if (type === 'meal') setMeal(value);
+        else if (type === 'ingredients') setIngredients(value);
+        else if (type === 'prepMethod') setPrepMethod(value);
+        else if (type === 'description') setDescription(value);
+        else if (type === 'foodImageURL') setFoodImageURL(value);
+        else if (type === 'category') setCategory(value);
     }
 
     const toggleError = (errorInfo) => {
@@ -49,7 +52,7 @@ const EditPage = ({ match }) => {
 
     const validate = (strings, URLs) => {
         for (const e in strings) {
-            if (strings[e].length == 0) {
+            if (strings[e].length === 0) {
                 toggleError(`${e} should be a non-empty string!`);
                 return true;
             }
@@ -71,7 +74,7 @@ const EditPage = ({ match }) => {
         if (validate({ meal, ingredients, prepMethod, description, category },
             { foodImageURL, categoryImageURL })) return;
 
-        const promise = await fetch(`http://localhost:8000/api/recipe/${id}`, {
+        await fetch(`http://localhost:8000/api/recipe/${id}`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -81,15 +84,15 @@ const EditPage = ({ match }) => {
                 foodImageURL, category, categoryImageURL
             })
         });
-        const data = await promise.json();
+        // const data = await promise.json();
         // console.log(data);
         history.push('/');
     }
 
     return (<>
         <Header />
-        <ErrorBox show={error.show} errorInfo={error.errorInfo}/>
-        <form id="edit-form" className={`text-center p-5 ${styles['form-layout']}`} action="#" method="POST" id="edit-receipt-form">
+        <ErrorBox show={error.show} errorInfo={error.errorInfo} />
+        <form id="edit-form" className={`text-center p-5 ${styles['form-layout']}`} action="#" method="POST">
             <p className="h4 mb-4">Edit Recipe</p>
 
             <input type="text" id="defaultRecepieEditMeal" name="meal" className="form-control mb-4" placeholder="Meal"

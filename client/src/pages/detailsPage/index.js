@@ -13,24 +13,27 @@ likes: [], comments: [] });
     const { user } = useContext(AuthContext);
     const id = match.params.id;
 
-    useEffect(async () => {
-        const promise = await fetch(`http://localhost:8000/api/recipe/${id}`);
+    useEffect(() => {
+        const fetchData = async () => {
+            const promise = await fetch(`http://localhost:8000/api/recipe/${id}`);
         const data = await promise.json();
         setRecipe(data);
+        }
+        fetchData();
     }, []);
 
-    const isAuthor = user._id == recipe.author._id;
+    const isAuthor = user._id === recipe.author._id;
 
     const archiveHandler = async (e) => {
-        const promise = await fetch(`http://localhost:8000/api/recipe/${id}`, {
+        await fetch(`http://localhost:8000/api/recipe/${id}`, {
             method: "DELETE"
         });
         history.push('/');
     }
 
     const likeHandler = async () => {
-        if([...recipe.likes].find(e => e._id == user._id)) return;
-        const promise = await fetch(`http://localhost:8000/api/recipe/${id}/like`, {
+        if([...recipe.likes].find(e => e._id === user._id)) return;
+        await fetch(`http://localhost:8000/api/recipe/${id}/like`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -65,8 +68,8 @@ likes: [], comments: [] });
                             <Link className="btn btn-danger" style={{marginRight: '10px'}} onClick={archiveHandler}>Delete</Link>
                             <Link className="btn btn-info" to={`/edit/${id}`}>Edit</Link></>)
                             : (<Link className="btn btn-success" onClick={likeHandler}>
-                                {[...recipe.likes].find(e => e._id == user._id) ? 
-                                `You ${[...recipe.likes].length == 1 ? '' : `and ${recipe.likes.length - 1}`} liked the recipe` : 
+                                {[...recipe.likes].find(e => e._id === user._id) ? 
+                                `You ${[...recipe.likes].length === 1 ? '' : `and ${recipe.likes.length - 1}`} liked the recipe` : 
                                 (`Like recipe! ${recipe.likes.length} people have done it!`)}</Link>)}
                     <hr/>
                     <h3 style={{margin: '20px'}}>Comment section</h3>

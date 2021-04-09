@@ -27,24 +27,24 @@ const CreatePage = () => {
 
     const formsHandler = (e, type) => {
         const value = e.target.value;
-        if (type == 'meal') setMeal(value);
-        else if (type == 'ingredients') setIngredients(value);
-        else if (type == 'prepMethod') setPrepMethod(value);
-        else if (type == 'description') setDescription(value);
-        else if (type == 'foodImageURL') setFoodImageURL(value);
-        else if (type == 'category') setCategory(value);
+        if (type === 'meal') setMeal(value);
+        else if (type === 'ingredients') setIngredients(value);
+        else if (type === 'prepMethod') setPrepMethod(value);
+        else if (type === 'description') setDescription(value);
+        else if (type === 'foodImageURL') setFoodImageURL(value);
+        else if (type === 'category') setCategory(value);
     }
 
     const validate = ( strings, URLs) => {
         for( const e in strings) {
-            if(strings[e].length == 0) {
+            if(strings[e].length === 0) {
                 toggleError(`${e} should be a non-empty string!`);
                 return true;
             }
         }
         for( const e in URLs) {
-            if(URLs[e].length === 0 || URLs[e].indexOf('http://')
-            || URLs[e].indexOf('https://')) {
+            if(URLs[e].length === 0 || (!URLs[e].indexOf('http://')
+            && !URLs[e].indexOf('https://'))) {
                 toggleError(`${e} should be a valid URL starting with http:// or https://!`);
                 return true;
             }
@@ -60,7 +60,7 @@ const CreatePage = () => {
         if(validate({ meal, ingredients, prepMethod, description, category},
             { foodImageURL, categoryImageURL})) return;
 
-        const promise = await fetch('http://localhost:8000/api/recipe', {
+        await fetch('http://localhost:8000/api/recipe', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -70,7 +70,7 @@ const CreatePage = () => {
                 foodImageURL, category, categoryImageURL, author: user._id
             })
         });
-        const data = await promise.json();
+        // const data = await promise.json();
         // console.log(data);
         history.push('/');
     };
