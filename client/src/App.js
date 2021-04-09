@@ -9,7 +9,7 @@ import DetailsPage from './pages/detailsPage';
 import EditPage from './pages/editPage';
 import AuthContext from './AuthContext';
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -23,6 +23,7 @@ function App() {
 
   useEffect(async () => {
     const token = getCookieValue('x-auth-token');
+    if(!token) return;
     const promise = await fetch('http://localhost:8000/api/user/verify', {
       method: "POST",
       headers: {
@@ -33,7 +34,7 @@ function App() {
       })
     });
     const user = await promise.json();
-    console.log(user);
+    // console.log(user);
     if(user) {
       setUser(user);
       setLoggedIn(true);
