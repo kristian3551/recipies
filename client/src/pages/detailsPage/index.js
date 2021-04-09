@@ -61,7 +61,7 @@ likes: [], comments: [] });
                             return <p key={i} className={styles.description}>{e}</p>
                         })}
                     </div>
-                    <i>* It is your article, so you can modify the recipe.</i>
+                    { user.username === recipe.author && (<i>* It is your article, so you can modify the recipe.</i>)}
                     <div className={styles.actions}>
 
                         {isAuthor ? (<>
@@ -72,7 +72,7 @@ likes: [], comments: [] });
                                 `You ${[...recipe.likes].length === 1 ? '' : `and ${recipe.likes.length - 1}`} liked the recipe` : 
                                 (`Like recipe! ${recipe.likes.length} people have done it!`)}</Link>)}
                     <hr/>
-                    <h3 style={{margin: '20px'}}>Comment section</h3>
+                    <h3 style={{margin: '20px', textAlign: 'center'}}>Comment section</h3>
                     <CommentSection comments={recipe.comments} id={recipe._id}/>
                     </div>
                     

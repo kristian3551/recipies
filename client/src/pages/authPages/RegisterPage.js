@@ -33,9 +33,9 @@ const RegisterPage = ({ history }) => {
         e.preventDefault();
         if (!firstName || !lastName) 
             return toggleError('First name and last name should be non-empty strings!');    
-        else if (username.length < 8) 
-        return toggleError('Username should be more than 8 symbols.');
-        else if (password.length < 8) return toggleError('Password should be more than 8 symbols.');
+        else if (username.length < 5) 
+        return toggleError('Username should be more than 5 symbols.');
+        else if (password.length < 5) return toggleError('Password should be more than 5 symbols.');
         else if(password !== repeatPassword) 
             return toggleError('Both passwords should match!');
         const promise = await fetch('http://localhost:8000/api/user/register', {
