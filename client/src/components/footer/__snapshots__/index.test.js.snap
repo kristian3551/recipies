@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer/> should render properly 1`] = `
+<footer
+  className="mastfoot mt-5 text-center text-light"
+>
+  <div
+    className="inner"
+  >
+    <p>
+      Made with ♥ by 
+      <a
+        className="footlink"
+        href="/"
+      >
+        Recipes
+      </a>
+      .
+    </p>
+  </div>
+</footer>
+`;

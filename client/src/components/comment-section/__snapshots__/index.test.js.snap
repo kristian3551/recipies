@@ -1,0 +1,189 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CommentSection/> should render right things 1`] = `
+<div
+  className="comment_block"
+>
+  <div
+    className="create_new_comment"
+  >
+    <div
+      className="input_comment"
+    >
+      <input
+        onChange={[Function]}
+        placeholder="Join the conversation.."
+        type="text"
+      />
+      <button
+        className="btn btn-outline-light"
+        onClick={[Function]}
+        style={
+          Object {
+            "float": "right",
+          }
+        }
+        type="button"
+      >
+        Submit comment
+      </button>
+    </div>
+  </div>
+  <div
+    className="new_comment"
+  >
+    <ul
+      className="user_comment"
+    >
+      <div
+        className="comment_body"
+      >
+        <p>
+          I enjoyed this recipe!
+        </p>
+      </div>
+      <div
+        className="comment_toolbar"
+      >
+        <div
+          className="comment_details"
+        >
+          <ul>
+            <li
+              style={
+                Object {
+                  "color": "black",
+                }
+              }
+            >
+              <i
+                className="fa fa-clock-o"
+                style={
+                  Object {
+                    "color": "black",
+                  }
+                }
+              />
+               
+              9
+              :
+              10
+            </li>
+            <li
+              style={
+                Object {
+                  "color": "black",
+                }
+              }
+            >
+              <i
+                className="fa fa-calendar"
+              />
+              9
+              /
+              4
+              /
+              2021
+            </li>
+            <li
+              style={
+                Object {
+                  "color": "black",
+                }
+              }
+            >
+              <i
+                className="fa fa-pencil"
+              />
+               
+              <span
+                className="user"
+              >
+                kristian01
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ul>
+  </div>
+  <div
+    className="new_comment"
+  >
+    <ul
+      className="user_comment"
+    >
+      <div
+        className="comment_body"
+      >
+        <p>
+          I enjoyed this recipe!
+        </p>
+      </div>
+      <div
+        className="comment_toolbar"
+      >
+        <div
+          className="comment_details"
+        >
+          <ul>
+            <li
+              style={
+                Object {
+                  "color": "black",
+                }
+              }
+            >
+              <i
+                className="fa fa-clock-o"
+                style={
+                  Object {
+                    "color": "black",
+                  }
+                }
+              />
+               
+              9
+              :
+              10
+            </li>
+            <li
+              style={
+                Object {
+                  "color": "black",
+                }
+              }
+            >
+              <i
+                className="fa fa-calendar"
+              />
+              9
+              /
+              4
+              /
+              2021
+            </li>
+            <li
+              style={
+                Object {
+                  "color": "black",
+                }
+              }
+            >
+              <i
+                className="fa fa-pencil"
+              />
+               
+              <span
+                className="user"
+              >
+                kristian01
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>
+`;

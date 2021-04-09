@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RecipeCard/> should render properly 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-lg-12"
+    >
+      <div
+        className="our-team-main"
+      >
+        <div
+          className="team-front"
+        >
+          <img
+            alt="Category"
+            src="https://media.wsimag.com/attachments/e93e9eb9c2850d7ffe69d0383ed27baf224eafd3/store/fill/690/388/35defd11ef8de6b2a0af60645188fd44f1fdcc1e7ed397421e56f58cd7c7/Eggs-milk-and-cheese.jpg"
+          />
+          <h3>
+            Cream of Turkey and Wild Rice Soup
+          </h3>
+          <p>
+            Milk, cheese, eggs and alternatives
+          </p>
+        </div>
+        <div
+          className="team-back"
+        >
+          <div
+            className="back-side-info"
+          >
+            <h4>
+              Details
+            </h4>
+            <a
+              href="/details/undefined"
+              onClick={[Function]}
+            >
+              View the recipe
+            </a>
+            <h4>
+              Ingredients
+            </h4>
+            <ul
+              style={
+                Object {
+                  "listStyleType": "none",
+                }
+              }
+            >
+              <li>
+                1 medium onion
+              </li>
+              <li>
+                chopped
+              </li>
+              <li>
+                1 can (4 ounces) sliced mushrooms
+              </li>
+              <li>
+                drained
+              </li>
+              <li>
+                2 tablespoons butter
+              </li>
+              <li>
+                3 cups water
+              </li>
+              <li>
+                2 cups chicken broth
+              </li>
+              <li>
+                1 package (6 ounces) long grain and wild rice mix
+              </li>
+              <li>
+                2 cups diced cooked turkey
+              </li>
+              <li>
+                1 cup heavy whipping cream
+              </li>
+              <li>
+                Minced fresh parsley
+              </li>
+            </ul>
+          </div>
+          <img
+            alt="Food"
+            className="foodImage"
+            src="https://www.tasteofhome.com/wp-content/uploads/2018/01/Cream-of-Turkey-and-Wild-Rice-Soup_EXPS_TOHON19_3589_B06_12_5b-2.jpg?fit=696,1024"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

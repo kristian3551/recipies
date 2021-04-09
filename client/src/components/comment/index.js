@@ -26,7 +26,7 @@ const Comment = ({ comment }) => {
                      <ul>
                          <li style={{color: 'black'}}><i className="fa fa-clock-o" style={{color: 'black'}}></i> {hours}:{minutes}</li>
                          <li style={{color: 'black'}}><i className="fa fa-calendar"></i>{days}/{month}/{year}</li>
-                         <li style={{color: 'black'}}><i className="fa fa-pencil"></i> <span class="user">{comment.author}</span></li>
+                         <li style={{color: 'black'}}><i className="fa fa-pencil"></i> <span className="user">{comment.author}</span></li>
                      </ul>
                  </div>
                 </div>

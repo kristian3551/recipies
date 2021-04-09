@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Comment/> should render right things 1`] = `
+<div
+  className="new_comment"
+>
+  <ul
+    className="user_comment"
+  >
+    <div
+      className="comment_body"
+    >
+      <p>
+        asdasdasd
+      </p>
+    </div>
+    <div
+      className="comment_toolbar"
+    >
+      <div
+        className="comment_details"
+      >
+        <ul>
+          <li
+            style={
+              Object {
+                "color": "black",
+              }
+            }
+          >
+            <i
+              className="fa fa-clock-o"
+              style={
+                Object {
+                  "color": "black",
+                }
+              }
+            />
+             
+            3
+            :
+            0
+          </li>
+          <li
+            style={
+              Object {
+                "color": "black",
+              }
+            }
+          >
+            <i
+              className="fa fa-calendar"
+            />
+            1
+            /
+            1
+            /
+            1970
+          </li>
+          <li
+            style={
+              Object {
+                "color": "black",
+              }
+            }
+          >
+            <i
+              className="fa fa-pencil"
+            />
+             
+            <span
+              className="user"
+            >
+              kristian01
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ul>
+</div>
+`;

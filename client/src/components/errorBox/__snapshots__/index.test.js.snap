@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ErrorBox/> should render properly 1`] = `
+<div
+  className="container"
+  id="notifications"
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <div
+    class="alert alert-danger"
+    id="errorBox"
+    role="alert"
+  >
+    Some error info!
+  </div>
+</div>
+`;
