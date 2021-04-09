@@ -22,7 +22,7 @@ const Recipe = ({ id, recipe }) => {
                     <h4>Details</h4>
                     <Link to={`/details/${id}`}>View the recipe</Link>
                         <h4>Ingredients</h4>
-                        <ul>
+                        <ul style={{listStyleType: 'none'}}>
                             {[...recipe.ingredients].map((e,i) => {
                                 return <li key={i}>{e}</li>;
                             })}

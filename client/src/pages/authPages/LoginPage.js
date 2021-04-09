@@ -13,6 +13,13 @@ const LoginPage = () => {
     const { login } = useContext(AuthContext);
     const history = useHistory();
 
+    const toggleError = (errorInfo) => {
+        setError({ show: true, errorInfo });
+        setTimeout(() => {
+            setError({ show: false, errorInfo: '' })
+        }, 5000);
+    }
+
     const signInHandler = async (e) => {
         e.preventDefault();
 
@@ -25,13 +32,7 @@ const LoginPage = () => {
                 username, password
             })
         });
-        if(!promise.ok) {
-            setError({ show: true, errorInfo: 'Invalid username or password!'});
-            setTimeout(() => {
-                setError({ show: false, errorInfo: ''})
-            }, 5000)
-            return;
-        }
+        if(!promise.ok) return toggleError('Invalid username or password!');
         const user = await promise.json();
         const token = promise.headers.get('Authorization');
         login(user, token);
