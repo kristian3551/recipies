@@ -19,7 +19,7 @@ const Header = () => {
             { loggedIn ? (<>
             <Link className={styles['nav-link']} style={{marginRight: '20px'}} to="/" >Welcome, {user.firstName} {user.lastName}!</Link>
             <Link className={styles['nav-link']} style={{marginRight: '20px'}} to="/create">Share recipe</Link>
-            <Link className={styles['nav-link']} onClick={logoutHandler}>Logout</Link></>) : (<>
+            <Link className={styles['nav-link']} to="/" onClick={logoutHandler}>Logout</Link></>) : (<>
             <Link className={styles['nav-link']} style={{marginRight: '20px'}} to="/login">Login</Link>
             <Link className={styles['nav-link']} to="/register">Register</Link>
             </>)}

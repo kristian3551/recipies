@@ -6,7 +6,7 @@ const ErrorBox = ({ errorInfo, show}) => {
         <div id="notifications" className={styles['container']} style={{display: `${show ? 'block' : 'none'}`}}>
         {/* <div id="successBox" class="alert alert-success" role="alert">{Success Message...}</div>
         <div id="loadingBox" class="alert alert-info" role="alert">Loading...</div> */}
-        <div id={styles.errorBox} class="alert alert-danger" role="alert">{errorInfo}</div>
+        <div id={styles.errorBox} className="alert alert-danger" role="alert">{errorInfo}</div>
     </div>);
 }
 

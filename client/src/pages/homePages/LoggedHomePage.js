@@ -54,40 +54,40 @@ const LoggedHomePage = () => {
 
     return (<>
         <Header />
-        <h1 class="text-center">Our Recipes</h1>
+        <h1 className="text-center">Our Recipes</h1>
 
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <div class="dropdown">
-                    <button class={`btn btn-secondary dropdown-toggle ${styles['filter-button']}`} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div className="input-group mb-3">
+            <div className="input-group-prepend">
+                <div className="dropdown">
+                    <button className={`btn btn-secondary dropdown-toggle ${styles['filter-button']}`} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Sort by
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <Link class="dropdown-item" onClick={e => sortHandler(e, 'alphabetical')}>Alphabetical order</Link>
-                        <Link class="dropdown-item" onClick={e => sortHandler(e, 'likes')}>By count of likes</Link>
-                        <Link class="dropdown-item" onClick={e => sortHandler(e, 'comments')}>By count of comments</Link>
-                        <Link class="dropdown-item" onClick={e => sortHandler(e, 'ingredients')}>By count of ingredients</Link>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <Link className="dropdown-item" onClick={e => sortHandler(e, 'alphabetical')}>Alphabetical order</Link>
+                        <Link className="dropdown-item" onClick={e => sortHandler(e, 'likes')}>By count of likes</Link>
+                        <Link className="dropdown-item" onClick={e => sortHandler(e, 'comments')}>By count of comments</Link>
+                        <Link className="dropdown-item" onClick={e => sortHandler(e, 'ingredients')}>By count of ingredients</Link>
                     </div>
                 </div>
-                <div class="dropdown">
-                    <button class={`btn btn-secondary dropdown-toggle`} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div className="dropdown">
+                    <button className={`btn btn-secondary dropdown-toggle`} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {filterCriteria ? `Filter by: ${filterCriteria}` : "Filter by:"}
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <Link class="dropdown-item" onClick={e => filterCriteriaHandler(e, 'nothing')}>Nothing</Link>
-                        <Link class="dropdown-item" onClick={e => filterCriteriaHandler(e, 'meal')}>Meal</Link>
-                        <Link class="dropdown-item" onClick={e => filterCriteriaHandler(e, 'ingredients')}>Ingredients</Link>
-                        <Link class="dropdown-item" onClick={e => filterCriteriaHandler(e, 'description')}>Description</Link>
-                        <Link class="dropdown-item" onClick={e => filterCriteriaHandler(e, 'prepMethod')}>Prep Method</Link>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <Link className="dropdown-item" onClick={e => filterCriteriaHandler(e, 'nothing')}>Nothing</Link>
+                        <Link className="dropdown-item" onClick={e => filterCriteriaHandler(e, 'meal')}>Meal</Link>
+                        <Link className="dropdown-item" onClick={e => filterCriteriaHandler(e, 'ingredients')}>Ingredients</Link>
+                        <Link className="dropdown-item" onClick={e => filterCriteriaHandler(e, 'description')}>Description</Link>
+                        <Link className="dropdown-item" onClick={e => filterCriteriaHandler(e, 'prepMethod')}>Prep Method</Link>
                     </div>
                 </div>
             </div>
-            <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1"
+            <input type="text" className="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1"
                 onChange={e => {
                     setFilterContent(e.target.value);
                 }} />
-            <button type="button" class="btn btn-light" style={{ marginLeft: '30px' }}
+            <button type="button" className="btn btn-light" style={{ marginLeft: '30px' }}
                 onClick={e => filterHandler(e)}>Filter</button>
         </div>
 

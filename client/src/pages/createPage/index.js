@@ -99,12 +99,12 @@ const CreatePage = () => {
                 placeholder="Food Image URL..." onChange={(e) => formsHandler(e, 'foodImageURL')} />
 
             <select name="category" onChange={(e) => formsHandler(e, 'category')}>
-                <option selected>Select category...</option>
-                <option selected>Vegetables and legumes/beans</option>
-                <option selected>Fruits</option>
-                <option selected>Grain Food</option>
-                <option selected>Milk, cheese, eggs and alternatives</option>
-                <option selected>Lean meats and poultry, fish and alternatives</option>
+                <option defaultValue>Select category...</option>
+                <option defaultValue>Vegetables and legumes/beans</option>
+                <option defaultValue>Fruits</option>
+                <option defaultValue>Grain Food</option>
+                <option defaultValue>Milk, cheese, eggs and alternatives</option>
+                <option defaultValue>Lean meats and poultry, fish and alternatives</option>
             </select>
 
             <button className="btn btn-danger w-25 m-auto my-4 btn-block" type="submit"
